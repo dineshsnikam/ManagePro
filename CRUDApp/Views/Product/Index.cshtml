@@ -1,0 +1,255 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Products";
+    var uniqueNames = Model.Select(p => p.Name).Distinct();
+    var uniqueDescriptions = Model.Select(p => p.Description).Distinct();
+}
+
+<style>
+    body {
+        overflow: hidden;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode body {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    .fixed-header {
+        position: sticky;
+        top: 0;
+        background-color: inherit;
+        z-index: 1000;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .table-container {
+        height: calc(100vh - 150px);
+        overflow-y: auto;
+        border: 1px solid var(--bs-border-color);
+        transition: border-color 0.3s;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: black;
+        color: var(--bs-table-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    select.form-select,
+    input.form-control {
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        border: 1px solid var(--bs-border-color);
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .btn-outline-primary,
+    .btn-outline-danger {
+        color: inherit;
+        border-color: currentColor;
+        transition: color 0.3s, border-color 0.3s;
+    }
+
+    :root {
+        --main-bg-color: white;
+        --main-text-color: black;
+    }
+
+    .dark-mode {
+        --main-bg-color: #121212;
+        --main-text-color: #f1f1f1;
+    }
+
+    body {
+        background-color: var(--main-bg-color);
+        color: var(--main-text-color);
+        margin:0px;
+        padding:0px;
+    }
+
+    select.form-select,
+    input.form-control {
+        background-color: var(--main-bg-color);
+        color: var(--main-text-color);
+        border: 1px solid #6c757d;
+    }
+
+    .table-container {
+        background-color: var(--main-bg-color);
+    }
+
+    .table th,
+    .table td {
+        background-color: var(--main-bg-color);
+        color: var(--main-text-color);
+    }
+
+        .ph{
+        background-color: black;
+        }
+
+    thead th {
+        background: linear-gradient(135deg, #2a5298, #1e3c72);
+        color: white;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #ccc;
+    }
+
+        thead th:hover {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            cursor: pointer;
+        }
+
+    thead select,
+    thead input {
+        font-size: 0.85rem;
+    }
+
+
+    .position {
+        background-color: black;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: linear-gradient(135deg, #1d3557, #457b7d);
+        padding: 1rem;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Default Light Mode */
+    select, select option {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    /* Dark Mode */
+    body.dark-mode select,
+    body.dark-mode select option {
+        background-color: #2c2c2c;
+        color: #f8f8f8;
+    }
+
+    select.form-select,
+    input.form-control {
+        background-color: var(--main-bg-color, #ffffff);
+        color: var(--main-text-color, #000000);
+    }
+
+    body.dark-mode select.form-select,
+    body.dark-mode input.form-control {
+        background-color: #2c2c2c;
+        color: #f8f8f8;
+    }
+</style>
+
+<div class="fixed-header text-center">
+    <h2 class="mb-2">
+        Product Control Panel
+
+    </h2>
+    <a class="btn btn-success mb-2" asp-controller="Product" asp-action="Create">➕ Create New Product</a>
+</div>
+
+<div class="table-container">
+    <table class="table table-bordered table-hover" id="productTable">
+        <thead class="text-center position">
+            <tr>
+                <th>
+                    <span style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="font-weight: bold; font-size: 1rem;">📝 Name</span>
+                        <select class="form-select form-select-sm mt-1" onchange="filterTable(0, this.value)">
+                            <option value="">All</option>
+                            @foreach (var name in uniqueNames)
+                            {
+                                <option value="@name">@name</option>
+                            }
+                        </select>
+                    </span>
+                </th>
+                <th style="width: 120px;">
+                    <span style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="font-weight: bold; font-size: 1rem;">💰 Price</span>
+                        <input type="number" class="form-control form-control-sm mt-1" placeholder="Search" onkeyup="filterTable(1, this.value)">
+                    </span>
+                </th>
+                <th>
+                    <span style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="font-weight: bold; font-size: 1rem;">📄 Description</span>
+                        <select class="form-select form-select-sm mt-1" onchange="filterTable(2, this.value)">
+                            <option value="">All</option>
+                            @foreach (var desc in uniqueDescriptions)
+                            {
+                                <option value="@desc">@desc</option>
+                            }
+                        </select>
+                    </span>
+                </th>
+                <th style="width: 120px;">
+                    <span style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="font-weight: bold; font-size: 1rem;">📦 Stock</span>
+                        <input type="number" class="form-control form-control-sm mt-1" placeholder="Search" onkeyup="filterTable(3, this.value)">
+                    </span>
+                </th>
+                <th style="width: 150px;"><span style="font-weight: bold; font-size: 1rem;">⚙️ Action</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td class="ph">@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>@product.Stock</td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-primary btn-sm px-2 py-1 me-1 bg-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+                        <a class="btn btn-outline-danger btn-sm px-2 py-1 bg-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Filter table function
+    function filterTable(columnIndex, value) {
+        const table = document.getElementById('productTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const cell = rows[i].getElementsByTagName('td')[columnIndex];
+            if (cell) {
+                const cellValue = cell.textContent || cell.innerText;
+
+                // For numeric columns (Price and Stock)
+                if (columnIndex === 1 || columnIndex === 3) {
+                    if (value === '' || cellValue == value) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+                // For text columns (Name and Description)
+                else {
+                    if (value === '' || cellValue.toLowerCase().includes(value.toLowerCase())) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    }
+</script>

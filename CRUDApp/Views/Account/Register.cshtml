@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Register";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="@(Url.Content("~/css/site.css"))" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<style>
+    body.dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .dark-mode .card {
+        background-color: #1e1e1e;
+        color: #ffffff;
+    }
+
+    .dark-mode .form-control {
+        background-color: #2b2b2b;
+        color: #fff;
+        border-color: #444;
+    }
+
+        .dark-mode .form-control::placeholder {
+            color: #ccc;
+        }
+
+    .custom-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        min-width: 300px;
+        z-index: 9999;
+        animation: slideIn 0.5s ease;
+    }
+
+    keyframes slideIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    }
+
+    .dark-toggle-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+    }
+</style>
+
+<!-- Dark Mode Toggle Button -->
+<div class="dark-toggle-btn">
+    <button class="btn btn-dark" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+</div>
+
+<!-- Notification Popup using TempData -->
+@if (TempData["Success"] != null)
+{
+    <div class="toast align-items-center text-white bg-success border-0 show custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                @TempData["Success"]
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+}
+
+<!-- Register Form -->
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 450px; width: 100%;">
+        <h3 class="text-center mb-4">Create an Account - ManagePro</h3>
+
+        <form asp-action="Register" method="post">
+            <div class="mb-3">
+                <label for="Name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter your name" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="Email" id="Email" placeholder="Enter email" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="Password" id="Password" placeholder="Create password" required />
+            </div>
+
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-success">Register</button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <p class="mb-0">Already have an account? <a href="/Account/Login">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+</script>

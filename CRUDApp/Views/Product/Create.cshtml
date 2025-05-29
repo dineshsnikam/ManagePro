@@ -1,0 +1,92 @@
+﻿@model Product
+<style>
+    <script src="~/lib/jquery/dist/jquery.min.js" > </script >
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" > </script >
+    <script src="~/js/site.js" asp-append-version="true" > </script >
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" > </script >
+    <script src="~/js/dark-mode.js" asp-append-version="true" > </script >
+</style>
+
+<style>
+    .position {
+        background-color: transparent;
+        position: sticky;
+        top: 0;
+        z-index: 100;   
+        background: linear-gradient(135deg, #1d3557, #457b7d);
+        padding: 1rem;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Default Light Mode */
+    select, select option {
+        background-color: #ffffff; /* white background */
+        color: #000000; /* black text */
+    }
+
+    /* Dark Mode */
+    body.dark-mode select,
+    body.dark-mode select option {
+        background-color: #2c2c2c; /* dark background */
+        color: #f8f8f8; /* light text */
+    }
+
+    select.form-select,
+    input.form-control {
+        background-color: var(--main-bg-color, #ffffff);
+        color: var(--main-text-color, #000000);
+    }
+
+    body.dark-mode select.form-select,
+    body.dark-mode input.form-control {
+        background-color: #2c2c2c;
+        color: #f8f8f8;
+    }
+
+</style>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">📝 Create New Product</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Product" asp-action="Create" method="post" class="position">
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-semibold">Product Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label fw-semibold">Price</label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter price in ₹" />
+                    <span asp-validation-for="Price" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Product description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Stock" class="form-label fw-semibold">Stock Quantity</label>
+                    <input asp-for="Stock" class="form-control" placeholder="Available stock units" />
+                    <span asp-validation-for="Stock" class="text-danger small"></span>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" asp-controller="Product" class="btn btn-secondary">
+                        ⬅️ Back to List
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        💾 Create Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

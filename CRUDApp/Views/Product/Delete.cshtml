@@ -1,0 +1,20 @@
+﻿@model Product
+
+<div class="container mt-4">
+    <h2 class="text-danger mb-3">🗑️ Delete Product</h2>
+
+    <div class="alert alert-warning">
+        <h5>Are you sure you want to delete the product <strong>"@Model.Name"</strong>?</h5>
+    </div>
+
+    <form asp-controller="Product" asp-action="DeleteConfirm" method="post" class="d-inline">
+        <input asp-for="Id" type="hidden" />
+        <button type="submit" class="btn btn-sm btn-danger me-2">
+            ✅ Yes, Delete
+        </button>
+    </form>
+
+    <a asp-action="Index" asp-controller="Product" class="btn btn-sm btn-secondary">
+        🔙 Cancel / Back to List
+    </a>
+</div>
