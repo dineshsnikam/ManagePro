@@ -18,3 +18,4 @@ namespace CRUDApp.Models
         public int Stock { get; set; }
     }
 }
+// test
