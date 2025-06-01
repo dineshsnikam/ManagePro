@@ -147,13 +147,23 @@ namespace CRUDApp.Controllers
         {
             try
             {
-                // Your delete logic here
-                return Json(new { success = true });
+                var history = _context.ProductHistory.FirstOrDefault(h => h.Id == id);
+                if (history != null)
+                {
+                    _context.ProductHistory.Remove(history);
+                    _context.SaveChanges();
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "History record not found." });
+                }
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message });
             }
         }
+
     }
 }

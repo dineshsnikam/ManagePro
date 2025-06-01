@@ -1,0 +1,145 @@
+﻿body {
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode body {
+    background-color: #121212;
+    color: #fff;
+}
+
+.fixed-header {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 1000;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--bs-border-color);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.table-container {
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+    border: 1px solid var(--bs-border-color);
+    transition: border-color 0.3s;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: black;
+    color: var(--bs-table-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+select.form-select,
+input.form-control {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-outline-primary,
+.btn-outline-danger {
+    color: inherit;
+    border-color: currentColor;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+:root {
+    --main-bg-color: white;
+    --main-text-color: black;
+}
+
+.dark-mode {
+    --main-bg-color: #121212;
+    --main-text-color: #f1f1f1;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    margin: 0px;
+    padding: 0px;
+}
+
+select.form-select,
+input.form-control {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    border: 1px solid #6c757d;
+}
+
+.table-container {
+    background-color: var(--main-bg-color);
+}
+
+.table th,
+.table td {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+
+.ph {
+    background-color: black;
+}
+
+thead th {
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #ccc;
+}
+
+    thead th:hover {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        cursor: pointer;
+    }
+
+thead select,
+thead input {
+    font-size: 0.85rem;
+}
+
+
+.position {
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1d3557, #457b7d);
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Default Light Mode */
+select, select option {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark Mode */
+body.dark-mode select,
+body.dark-mode select option {
+    background-color: #2c2c2c;
+    color: #f8f8f8;
+}
+
+select.form-select,
+input.form-control {
+    background-color: var(--main-bg-color, #ffffff);
+    color: var(--main-text-color, #000000);
+}
+
+body.dark-mode select.form-select,
+body.dark-mode input.form-control {
+    background-color: #2c2c2c;
+    color: #f8f8f8;
+}

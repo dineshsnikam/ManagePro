@@ -1,0 +1,36 @@
+﻿.position {
+    background-color: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #1d3557, #457b7d);
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Default Light Mode */
+select, select option {
+    background-color: #ffffff; /* white background */
+    color: #000000; /* black text */
+}
+
+/* Dark Mode */
+body.dark-mode select,
+body.dark-mode select option {
+    background-color: #2c2c2c; /* dark background */
+    color: #f8f8f8; /* light text */
+}
+
+select.form-select,
+input.form-control {
+    background-color: var(--main-bg-color, #ffffff);
+    color: var(--main-text-color, #000000);
+}
+
+body.dark-mode select.form-select,
+body.dark-mode input.form-control {
+    background-color: #2c2c2c;
+    color: #f8f8f8;
+}

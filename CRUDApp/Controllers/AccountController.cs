@@ -15,11 +15,13 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             // Dummy check for demo
-            if (model.Email == "admin@demo.com" && model.Password == "admin")
+            if (model.Email == "dinesh@gmail.com" && model.Password == "dinesh")
+
+
             {
                 return RedirectToAction("Index", "Dashboard");
             }
-            ModelState.AddModelError("", "Invalid login.");
+            TempData["Error"] = "❌ Invalid Email or Password.";
         }
         return View(model);
     }
@@ -35,15 +37,20 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Save registration logic here
+            // TODO: Save registration logic here (e.g., DB insert)
+
+            TempData["Success"] = "✅ Registration successful! Please login.";
             return RedirectToAction("Login");
         }
+
+        TempData["Error"] = "❌ Please correct the highlighted errors and try again.";
         return View(model);
     }
 
     public IActionResult Logout()
     {
-        // Add logout logic here
+        // TODO: Add logout logic here (e.g., clear session/cookie)
         return RedirectToAction("Login");
     }
+
 }

@@ -1,0 +1,24 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    position: center;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+    .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+.card-body h2 {
+    transition: transform 0.3s ease;
+    <figcaption>text</figcaption> </figure>
+}
+
+.card:hover .card-body h2 {
+    transform: scale(1.1);
+}

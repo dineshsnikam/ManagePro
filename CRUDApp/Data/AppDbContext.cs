@@ -13,8 +13,9 @@ namespace CRUDApp.Data
 
        
             
-            public DbSet<ProductHistory> ProductHistory { get; set; } 
-        }
+            public DbSet<ProductHistory> ProductHistory { get; set; }
+        public object ProductHistories { get; internal set; }
+    }
 
 
     }
