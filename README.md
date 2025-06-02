@@ -53,3 +53,8 @@ This project ManagePro is developed exclusively by Dinesh Nikam and is intended 
 
 For any inquiries or permissions, please contact: dnikam.dev@gmail.com
 
+## 🎥 Project Demo
+
+[![Watch the video](https://img.youtube.com/vi/WpitffQPK5Q/0.jpg)](https://www.youtube.com/watch?v=WpitffQPK5Q)
+
+
